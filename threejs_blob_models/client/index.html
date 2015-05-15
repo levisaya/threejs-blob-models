@@ -2,24 +2,19 @@
 <html lang="en" ng-app="threeJsBlobApp">
     <head>
       <meta charset="UTF-8">
+      <base href="/"></base>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/threejs/r69/three.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.14/angular-ui-router.min.js"></script>
       <script src="app/app.js"></script>
-      <script src="app/controllers/index_controller.js"></script>
+      <script src="app/services/render_service.js"></script>
       <script src="app/directives/renderer.js"></script>
+      <script src="app/routes/routes.js"></script>
       <link rel="stylesheet" href="style.css">
     </head>
 
-    <body ng-controller="IndexController as index">
-        <div class="container">
-            <div ui-view="sidebar" class="sidebar">
-                <div ng-repeat="geom_type in index.geometry_types">{{geom_type}}</div>
-            </div>
-            <div ui-view="renderer" class="main">
-                <renderer></renderer>
-            </div>
-        </div>
+    <body>
+        <div class="container" ui-view></div>
     </body>
 </html>
