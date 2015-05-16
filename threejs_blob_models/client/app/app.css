@@ -4,7 +4,7 @@ html, body {
   margin: 0;
 }
 
-.container {
+.flex-container {
     height: 100%;
     width: 100%;
     display: -ms-flexbox;
@@ -40,4 +40,14 @@ html, body {
 .main > renderer {
     width:100%;
     height:100%;
+}
+
+#model-list {
+    width:100%
+}
+
+#model-list > button {
+    width: 200px;
+    margin-left: 25px;
+    margin-top: 5px;
 }

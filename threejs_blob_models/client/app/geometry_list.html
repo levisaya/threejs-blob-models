@@ -1,0 +1,8 @@
+<div id="model-list">
+    <button class="btn btn-primary"
+            ng-repeat="model_type in model_types"
+            ui-sref-active="active"
+            ui-sref="base.model({model_name:model_type})">
+        <p>{{model_type}}</p>
+    </button>
+</div>

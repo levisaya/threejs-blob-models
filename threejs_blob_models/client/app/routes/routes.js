@@ -14,7 +14,7 @@
           controller: function($scope, model_types_response) {
             return $scope.model_types = model_types_response.data.model_types;
           },
-          template: '<div ng-repeat="model_type in model_types"><a ui-sref="base.model({model_name:model_type})">{{model_type}}</a></div>',
+          templateUrl: 'app/geometry_list.html',
           resolve: {
             'model_types_response': function($http) {
               return $http.get('/model-types');
@@ -22,7 +22,7 @@
           }
         },
         'main_pane@base': {
-          template: '<div>Pick One!</div>'
+          templateUrl: 'app/base_view.html'
         }
       }
     };

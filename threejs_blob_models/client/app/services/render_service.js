@@ -11,8 +11,6 @@
 
       RenderService.renderer.gammaOutput = true;
 
-      window.addEventListener('resize', RenderService.resize, false);
-
       RenderService.scene = new THREE.Scene();
 
       RenderService.camera = null;
@@ -22,8 +20,8 @@
       RenderService.resize = function() {
         var height, width;
         if (RenderService.elem != null) {
-          width = $(RenderService.elem).parent().width() - 10;
-          height = $(RenderService.elem).parent().height() - 10;
+          width = $(RenderService.elem).width() - 4;
+          height = $(RenderService.elem).height() - 4;
           if (RenderService.camera == null) {
             RenderService.camera = new THREE.PerspectiveCamera(50, width / height, 1, 2000);
             RenderService.camera.position.set(0, 0, 5);
@@ -33,6 +31,8 @@
           return RenderService.camera.updateProjectionMatrix();
         }
       };
+
+      window.addEventListener('resize', RenderService.resize, false);
 
       RenderService.render_blob = function(blob) {
         var current_blob, geometry, lines, material, vertices;
@@ -54,15 +54,30 @@
 
       RenderService.set_parent_elem = function(elem) {
         RenderService.elem = elem;
-        return RenderService.resize();
+        RenderService.resize();
+        return RenderService.renderer.domElement;
+      };
+
+      RenderService.animation_id = null;
+
+      RenderService.cancel_render = function() {
+        if (RenderService.animation_id) {
+          cancelAnimationFrame(RenderService.animation_id);
+        }
+        return RenderService.animation_id = null;
       };
 
       RenderService.render = function() {
+        var blob, time;
+        time = Date.now() * 0.001;
+        blob = RenderService.scene.getObjectByName('blob');
+        blob.rotation.x = time * 0.25;
+        blob.rotation.y = time * 0.5;
         return RenderService.renderer.render(RenderService.scene, RenderService.camera);
       };
 
-      RenderService.animate = function() {
-        requestAnimationFrame(RenderService.animate);
+      RenderService.start_render = function() {
+        RenderService.animation_id = requestAnimationFrame(RenderService.start_render);
         return RenderService.render();
       };
 

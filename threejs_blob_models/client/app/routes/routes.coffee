@@ -10,11 +10,11 @@ angular.module('threeJsBlobApp').config ($stateProvider, $urlRouterProvider) ->
             'sidebar@base':
                 controller: ($scope, model_types_response) ->
                     $scope.model_types = model_types_response.data.model_types
-                template: '<div ng-repeat="model_type in model_types"><a ui-sref="base.model({model_name:model_type})">{{model_type}}</a></div>'
+                templateUrl: 'app/geometry_list.html'
                 resolve:
                     'model_types_response': ($http) -> $http.get('/model-types')
             'main_pane@base':
-                template: '<div>Pick One!</div>'
+                templateUrl: 'app/base_view.html'
 
     model_state =
         url: 'model-display/:model_name'

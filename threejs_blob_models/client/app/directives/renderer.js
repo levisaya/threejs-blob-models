@@ -4,9 +4,13 @@
     return {
       restrict: 'E',
       link: function(scope, elem, attrs) {
-        renderService.set_parent_elem(elem[0]);
-        elem.append(renderService.renderer.domElement);
-        return renderService.animate();
+        var renderer_elem;
+        renderer_elem = renderService.set_parent_elem($(elem[0]).parent());
+        elem.append(renderer_elem);
+        renderService.start_render();
+        return scope.$on('$destroy', function() {
+          return renderService.cancel_render();
+        });
       }
     };
   });
