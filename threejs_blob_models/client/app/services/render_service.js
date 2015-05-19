@@ -20,8 +20,8 @@
       RenderService.resize = function() {
         var height, width;
         if (RenderService.elem != null) {
-          width = $(RenderService.elem).width() - 4;
-          height = $(RenderService.elem).height() - 4;
+          width = $(RenderService.elem).width() - 10;
+          height = $(RenderService.elem).height() - 10;
           if (RenderService.camera == null) {
             RenderService.camera = new THREE.PerspectiveCamera(50, width / height, 1, 2000);
             RenderService.camera.position.set(0, 0, 5);

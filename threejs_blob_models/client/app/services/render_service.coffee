@@ -20,8 +20,8 @@ angular.module('threeJsBlobApp').factory 'renderService', () ->
         # a new parent DOM element.
         @resize = () =>
             if @elem?
-                width = $(@elem).width() - 4
-                height = $(@elem).height() - 4
+                width = $(@elem).width() - 10
+                height = $(@elem).height() - 10
 
                 # The camera only needs to be initialized once, on setting the initial parent DOM element.
                 if !@camera?

@@ -36,7 +36,7 @@ if __name__ == "__main__":
     blobs = {'Cube': construct_cube().tostring(),
              'Pyramid': construct_pyramid().tostring(),
              'Noise Cube (1000 Lines)': construct_noisecube(1000).tostring(),
-             'Noise Cube (1M Lines)': construct_noisecube(1000000).tostring()}
+             'Noise Cube (10K Lines)': construct_noisecube(10000).tostring()}
 
     application = tornado.web.Application([
         (r'/model/(.*)', ModelHandler, {'blobs': blobs}),
