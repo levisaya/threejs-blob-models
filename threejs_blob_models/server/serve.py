@@ -47,5 +47,5 @@ if __name__ == "__main__":
     compress_response=True)
 
     wsgi_app = tornado.wsgi.WSGIAdapter(application)
-    server = wsgiref.simple_server.make_server('', 80, wsgi_app)
+    server = wsgiref.simple_server.make_server('', os.environ.get('PORT', 8888), wsgi_app)
     server.serve_forever()
