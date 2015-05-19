@@ -1,8 +1,11 @@
 import tornado.ioloop
 import tornado.web
+import tornado.wsgi
 import numpy
 import os
 from threejs_blob_models.server.geometry import construct_cube, construct_pyramid, construct_noisecube
+import wsgiref.simple_server
+
 
 class ModelTypesHandler(tornado.web.RequestHandler):
     """
@@ -40,7 +43,9 @@ if __name__ == "__main__":
         (r'/model-types', ModelTypesHandler, {'model_types': sorted(list(blobs.keys()))}),
         (r'/(.*)', tornado.web.StaticFileHandler, {'path': os.path.abspath(os.path.join(__file__, '..', '..', 'client')),
                                                    'default_filename': 'index.html'}),
-    ])
+    ],
+    compress_response=True)
 
-    application.listen(8888)
-    tornado.ioloop.IOLoop.instance().start()
+    wsgi_app = tornado.wsgi.WSGIAdapter(application)
+    server = wsgiref.simple_server.make_server('', 8888, wsgi_app)
+    server.serve_forever()
