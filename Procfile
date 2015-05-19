@@ -1,1 +1,1 @@
-web: gunicorn -k tornado --log-file - threejs_blob_models\server\serve.py
+web: python threejs_blob_models/server/serve.py
